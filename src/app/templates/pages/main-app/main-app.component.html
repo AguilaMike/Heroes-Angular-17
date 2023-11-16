@@ -1,3 +1,33 @@
-<p>main-app works!</p>
-
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen role="heading">
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '300px'}">
+    <mat-toolbar color="warn">
+        <span>Menú</span>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      @for (path of sidebarItems; track $index) {
+        <mat-list-item [routerLink]="path.url" (click)="sidenav.toggle()">
+          <mat-icon matListItemIcon>{{ path.icon }}</mat-icon>
+          {{ path.label }}
+        </mat-list-item>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    @if (!sidenav.opened) {
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
+    <span class="spacer"></span>
+    <button mat-button>
+      Logout
+    </button>
+  </mat-toolbar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
