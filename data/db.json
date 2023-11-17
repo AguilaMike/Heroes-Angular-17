@@ -166,6 +166,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "PVMrySK",
+      "superhero": "Monke D. Luffy",
+      "publisher": "DC Comics",
+      "alter_ego": "Luffy",
+      "first_appearance": "2003",
+      "characters": "Mugiwara, Luffy, Monke D. Luffy",
+      "alt_img": "https://m.media-amazon.com/images/I/61VekrDviAL.jpg"
     }
   ]
 }

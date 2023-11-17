@@ -1,47 +1,55 @@
 <h1>
-  Editar / Agregar
+  {{ (currentHero.id) ? 'Editar' : 'Nuevo' }}
   héroe
-  <small>Superman</small>
+  @if (currentHero.id) {
+    <small>{{ currentHero.superhero }}</small>
+  }
 </h1>
 <mat-divider></mat-divider>
 <div class="grid p-2">
   <div class="col-12 sm:col-6">
     <mat-card>
       <mat-card-content>
-        <div class="grid">
+        <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSumit()">
           <mat-form-field class="col-12 sm:col-6">
             <mat-label>Super héroe</mat-label>
-            <input type="text" matInput required>
+            <input type="text" matInput required formControlName="superhero">
           </mat-form-field>
           <mat-form-field class="col-12 sm:col-6">
             <mat-label>Alter ego</mat-label>
-            <input type="text" matInput required>
+            <input type="text" matInput required formControlName="alter_ego">
           </mat-form-field>
           <mat-form-field class="col-12">
             <mat-label>Primera aparición</mat-label>
-            <input type="text" matInput required>
+            <input type="text" matInput required formControlName="first_appearance">
           </mat-form-field>
           <mat-form-field class="col-12">
             <mat-label>Personajes</mat-label>
-            <input type="text" matInput required>
+            <input type="text" matInput required formControlName="characters">
           </mat-form-field>
           <mat-form-field class="col-12">
             <mat-label>Creador</mat-label>
-            <mat-select required="">
+            <mat-select required formControlName="publisher">
               @for (value of publisher; track $index) {
                 <mat-option [value]="value.id">{{ value.desc }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
-        </div>
+          <mat-form-field class="col-12">
+            <mat-label>Imagen alterna</mat-label>
+            <input type="text" matInput formControlName="alt_img">
+          </mat-form-field>
+        </form>
       </mat-card-content>
       <mat-card-actions >
-        <button mat-flat-button color="warn">
-          <mat-icon>delete</mat-icon>
-          Borrar
-        </button>
+        @if (currentHero.id) {
+          <button mat-flat-button color="warn" (click)="onDeleteHero()">
+            <mat-icon>delete</mat-icon>
+            Borrar
+          </button>
+        }
         <span class="spacer"></span>
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" (click)="onSumit()">
           <mat-icon>save</mat-icon>
           Guardar
         </button>
@@ -50,7 +58,7 @@
   </div>
   <div class="col-12 sm:col-6">
     <mat-card>
-      <img matCardImage src="" alt="imagen del héroe">
+      <img matCardImage [src]="currentHero | heroImage" alt="imagen del héroe">
     </mat-card>
   </div>
 </div>

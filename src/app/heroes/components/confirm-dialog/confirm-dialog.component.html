@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>¿Esta seguro de eliminar el heroe {{ data.superhero }}?</h1>
+<div mat-dialog-content>
+  <p>Este proceso no es reversible, esta a punto de eliminar a {{ data.superhero }}.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancelar</button>
+  <span class="spacer"></span>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn">Borrar</button>
+</div>
