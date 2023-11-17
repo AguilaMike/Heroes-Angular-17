@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "mock": "json-server --watch data/db.json",
     "start": "ng serve",
     "build": "ng build",
     "build:href": "ng build --base-href ./",
